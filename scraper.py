@@ -30,7 +30,9 @@ if __name__ == "__main__":
     img_tags = soup.findAll('img')
     for tag in img_tags:
         # filter out gui images and 'detail' images
-        if "bilder/" in tag['src'] and not "detalj" in tag['src']:
+        if ("bilder/" in tag['src'] and
+                not "detalj" in tag['src'] and
+                not "text" in tag['src']):
             img_url = BASE / tag['src']
             with open(DEST / img_url.name, 'wb') as handler:
                 print(f"Downloading: {img_url}")
